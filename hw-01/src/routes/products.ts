@@ -4,6 +4,8 @@ import { OpenAPIHono, createRoute, z } from "@hono/zod-openapi";
 
 const productsRouter = new OpenAPIHono();
 
+
+
 const ProductSchema = z.object({
     id: z.number(),
     nombre: z.string(),
@@ -141,8 +143,8 @@ productsRouter.openapi(getProductByIdRoute,(c)=>{
 
 productsRouter.openapi(createProductRoute,async(c)=>{
 
-    const body = await c.req.json();
-
+    //const body = await c.req.json();
+    const body = c.req.valid("json");
 
     const newId =
         products.length > 0
@@ -221,7 +223,7 @@ productsRouter.openapi(updateProductRoute,async(c)=>{
     const id = Number(c.req.param("id"));
     const body = await c.req.json();
 
-    if (!body.name || body.price === undefined) {
+    if (!body.nombre || body.precio === undefined) {
         return c.json(
             {
                 message: "Nombre y precio son obligatorios."
