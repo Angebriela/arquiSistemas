@@ -11,7 +11,6 @@ por lo que no requiere una base de datos.
 * TypeScript
 * Hono
 * Node.js
-* Pino (Logger)
 * tsx
 
 ## Requisitos
