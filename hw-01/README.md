@@ -116,9 +116,7 @@ Respuestas:
 
 **DELETE**
 
-```http
 DELETE /products/:id
-```
 
 Respuestas:
 
