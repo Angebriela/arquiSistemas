@@ -1,65 +1,222 @@
-import { Hono } from "hono";
 import { products } from "../data/products";
+import { createRoute, z } from "@hono/zod-openapi";
+import { OpenAPIHono, createRoute, z } from "@hono/zod-openapi";
 
-const productsRouter = new Hono();
+const productsRouter = new OpenAPIHono();
+
+const ProductSchema = z.object({
+    id: z.number(),
+    nombre: z.string(),
+    precio: z.number()
+});
+
+const CreateProductSchema = z.object({
+
+    nombre:z.string(),
+
+    precio:z.number()
+
+});
+
+const createProductRoute = createRoute({
+
+    method:"post",
+
+    path:"/",
+
+    summary:"Crear producto",
+
+    request:{
+        body:{
+            content:{
+                "application/json":{
+                    schema:CreateProductSchema
+                }
+            }
+        }
+    },
+
+
+    responses:{
+
+        201:{
+            description:"Producto creado",
+            content:{
+                "application/json":{
+                    schema:ProductSchema
+                }
+            }
+        }
+
+    }
+
+});
+
 
 //GET general
-productsRouter.get("/", (c) => {
+const getProductsRoute = createRoute({
+
+    method: "get",
+
+    path: "/",
+
+    summary: "Obtener todos los productos",
+
+    responses: {
+        200: {
+            description: "Lista de productos",
+            content: {
+                "application/json": {
+                    schema: z.array(ProductSchema)
+                }
+            }
+        }
+    }
+
+});
+
+productsRouter.openapi(getProductsRoute, (c) => {
     return c.json(products, 200);
 });
 
 //GET con id
-productsRouter.get("/:id", (c) => {
+const getProductByIdRoute = createRoute({
+
+    method:"get",
+
+    path:"/:id",
+
+    summary:"Obtener producto por ID",
+
+    request:{
+        params:z.object({
+            id:z.string()
+        })
+    },
+
+    responses:{
+
+        200:{
+            description:"Producto encontrado",
+            content:{
+                "application/json":{
+                    schema:ProductSchema
+                }
+            }
+        },
+
+        404:{
+            description:"Producto no encontrado"
+        }
+
+    }
+
+});
+
+productsRouter.openapi(getProductByIdRoute,(c)=>{
+
     const id = Number(c.req.param("id"));
 
-    const product = products.find((p) => p.id === id);
+    const product = products.find(
+        (p)=>p.id===id
+    );
 
-    if (!product) {
+
+    if(!product){
         return c.json(
             {
-                message: "Producto no encontrado"
+                message:"Producto no encontrado"
             },
             404
         );
     }
 
-    return c.json(product, 200);
+
+    return c.json(product,200);
+
 });
 
+
 //POST 
-productsRouter.post("/", async (c) => {
+
+productsRouter.openapi(createProductRoute,async(c)=>{
 
     const body = await c.req.json();
 
-    if (!body.name || body.price === undefined) {
-        return c.json(
-            {
-                message: "Nombre y precio son obligatorios."
-            },
-            400
-        );
-    }
 
     const newId =
         products.length > 0
-            ? products[products.length - 1].id + 1
-            : 1;
+        ? products[products.length-1].id+1
+        :1;
 
-    const newProduct = {
-        id: newId,
-        name: body.name,
-        price: body.price
+
+    const newProduct={
+        id:newId,
+        nombre:body.nombre,
+        precio:body.precio
     };
+
 
     products.push(newProduct);
 
-    logger.info(`Producto creado con ID ${newProduct.id}`);
-    return c.json(newProduct, 201);
+
+    logger.info(
+        `Producto creado con ID ${newProduct.id}`
+    );
+
+
+    return c.json(newProduct,201);
 
 });
 
+
 //PUT
-productsRouter.put("/:id", async (c) => {
+
+const updateProductRoute=createRoute({
+
+    method:"put",
+
+    path:"/:id",
+
+    summary:"Actualizar producto",
+
+    request:{
+
+        params:z.object({
+        id:z.string()
+    }),
+
+        body:{
+            content:{
+                "application/json":{
+                schema:CreateProductSchema
+                }
+            }
+        }
+
+    },
+
+
+    responses:{
+
+        200:{
+            description:"Producto actualizado",
+            content:{
+                "application/json":{
+                    schema:ProductSchema
+                }
+            }
+        },
+
+    404:{
+        description:"Producto no encontrado"
+    }
+
+    }
+
+});
+
+productsRouter.openapi(updateProductRoute,async(c)=>{
 
     const id = Number(c.req.param("id"));
     const body = await c.req.json();
@@ -86,8 +243,8 @@ productsRouter.put("/:id", async (c) => {
 
     products[index] = {
         id,
-        name: body.name,
-        price: body.price
+        nombre: body.nombre,
+        precio: body.precio
     };
 
     logger.info(`Producto ${id} actualizado`);
@@ -95,8 +252,39 @@ productsRouter.put("/:id", async (c) => {
 
 });
 
+
 //DELETE
-productsRouter.delete("/:id", (c) => {
+
+const deleteProductRoute=createRoute({
+
+    method:"delete",
+
+    path:"/:id",
+
+    summary:"Eliminar producto",
+
+    request:{
+        params:z.object({
+        id:z.string()
+        })
+    },
+
+
+    responses:{
+
+        204:{
+            description:"Producto eliminado"
+        },
+
+        404:{
+            description:"Producto no encontrado"
+        }
+
+    }
+
+});
+
+productsRouter.openapi(deleteProductRoute,(c)=>{
 
     const id = Number(c.req.param("id"));
 

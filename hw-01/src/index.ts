@@ -1,8 +1,13 @@
-import { Hono } from "hono";
+import { OpenAPIHono } from '@hono/zod-openapi';
 import { serve } from "@hono/node-server";
 import logger from "./utils/logger";
+import { apiReference } from '@scalar/hono-api-reference';
+import { openApiConfig } from "./openapi";
 
-const app = new Hono();
+
+
+
+const app = new OpenAPIHono()
 import productsRouter from "./routes/products";
 
 app.use("*", async (c, next) => {
@@ -22,6 +27,17 @@ app.get("/", (c) => {
         message: "Api con Hono y TypeScript :)"
     });
 });
+
+app.get(
+  "/docs",
+  apiReference({
+    spec: {
+      url: "/openapi"
+    }
+  })
+);
+
+app.doc("/openapi", openApiConfig);
 
 
 serve(

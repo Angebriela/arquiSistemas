@@ -32,6 +32,7 @@ cd arquiSistemas/hw-01
 Instale las dependencias:
 npm install
 
+
 ## Ejecución
 
 Inicie el servidor con el siguiente comando:
@@ -41,88 +42,9 @@ Si todo se ejecuta correctamente, la API estará disponible en:
 
 http://localhost:3000
 
-## Endpoints disponibles
+# Documentación
 
-### Obtener todos los productos
-
-**GET**
-
-GET /products
-
-Respuesta:
-
-* 200 OK
-
----
-
-### Obtener un producto por ID
-
-**GET**
-
-GET /products/:id
-
-Respuestas:
-
-* 200 OK
-* 404 Not Found
-
----
-
-### Crear un producto
-
-**POST**
-
-POST /products
-
-Body:
-
-```json
-{
-    "name": "Monitor",
-    "price": 1200
-}
-```
-
-Respuestas:
-
-* 201 Created
-* 400 Bad Request
-
----
-
-### Actualizar un producto
-
-**PUT**
-
-PUT /products/:id
-
-Body:
-
-```json
-{
-    "name": "Monitor Gamer",
-    "price": 1500
-}
-```
-
-Respuestas:
-
-* 200 OK
-* 400 Bad Request
-* 404 Not Found
-
----
-
-### Eliminar un producto
-
-**DELETE**
-
-DELETE /products/:id
-
-Respuestas:
-
-* 204 No Content
-* 404 Not Found
+http://localhost:3000/docs
 
 ## Estructura del proyecto
 
@@ -146,3 +68,6 @@ hw-01/
 * La información se almacena únicamente en memoria.
 * Al reiniciar el servidor, los datos creados o modificados se perderán.
 * La API fue desarrollada como parte de la tarea **HW-01** de la asignatura de Arquitectura de Sistemas.
+
+
+
