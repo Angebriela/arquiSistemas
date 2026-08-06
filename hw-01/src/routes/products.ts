@@ -53,6 +53,7 @@ productsRouter.post("/", async (c) => {
 
     products.push(newProduct);
 
+    logger.info(`Producto creado con ID ${newProduct.id}`);
     return c.json(newProduct, 201);
 
 });
@@ -89,6 +90,7 @@ productsRouter.put("/:id", async (c) => {
         price: body.price
     };
 
+    logger.info(`Producto ${id} actualizado`);
     return c.json(products[index], 200);
 
 });
@@ -101,6 +103,7 @@ productsRouter.delete("/:id", (c) => {
     const index = products.findIndex((p) => p.id === id);
 
     if (index === -1) {
+        logger.warn(`Intento de eliminar un producto inexistente: ${id}`);
         return c.json(
             {
                 message: "Producto no encontrado."
@@ -111,6 +114,7 @@ productsRouter.delete("/:id", (c) => {
 
     products.splice(index, 1);
 
+    logger.info(`Producto ${id} eliminado`);
     return c.body(null, 204);
 
 });
