@@ -12,6 +12,7 @@ por lo que no requiere una base de datos.
 * Hono
 * Node.js
 * tsx
+* scalar
 
 ## Requisitos
 
