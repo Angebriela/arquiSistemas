@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import BaseModel
+from apps.core.models import BaseModel
 
 class Director(BaseModel):
     nombre = models.CharField(max_length=150)

@@ -1,7 +1,7 @@
 from django.db import models
-from core.models import BaseModel
-from usuarios.models import Usuario
-from peliculas.models import Ejemplar
+from apps.core.models import BaseModel
+from apps.usuarios.models import Usuario
+from apps.peliculas.models import Ejemplar
 
 
 class Prestamo(BaseModel):

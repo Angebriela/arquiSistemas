@@ -1,7 +1,7 @@
 from django.db import models
-from core.models import BaseModel
-from directores.models import Director
-from generos.models import Genero
+from apps.core.models import BaseModel
+from apps.directores.models import Director
+from apps.generos.models import Genero
 
 
 class Pelicula(BaseModel):
