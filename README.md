@@ -79,6 +79,8 @@ La API estará disponible en:
 http://127.0.0.1:8000/
 ```
 
+La ruta raíz muestra un mensaje de bienvenida y las rutas principales de la API. También está disponible en `/api/`.
+
 ## Autenticación JWT
 
 Todos los endpoints de las entidades requieren un token JWT. Crear primero un usuario de Django:
