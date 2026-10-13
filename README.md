@@ -8,3 +8,11 @@ de S3 distribuido por CloudFront mediante GitHub Actions.
 1. Build: npm ci + npm run build
 2. Upload: aws s3 sync dist/ al bucket
 3. Invalidate: invalidacion de cache de CloudFront (/*)
+
+## Capturas
+### Pagina funcionando desde CloudFront
+![ACTIONS](docs/actionscap.png)
+![CDN](docs/CDNcap.png)
+
+### Ultima ejecucion exitosa del pipeline
+![Pipeline](docs/pruebaCap.png)
