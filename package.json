@@ -1,0 +1,18 @@
+{
+    "name": "monorepo-hw-05",
+    "verson": "1.0.0",
+    "private": true,
+    "description": "Monorepo hw-05: Turborepo + pnpm + TypeScript",
+    "packageManager": "pnpm@9.15.0",
+    "engines": { "node": ">=20" },
+    "scripts": {
+        "dev": "turbo run dev",
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "test": "turbo run test"
+    },
+    "devDependencies": {
+        "turbo": "^2.3.3",
+        "typescript": "^5.6.3"
+    }
+}
