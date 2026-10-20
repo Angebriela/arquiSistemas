@@ -1,6 +1,6 @@
 {
     "name": "monorepo-hw-05",
-    "verson": "1.0.0",
+    "version": "1.0.0",
     "private": true,
     "description": "Monorepo hw-05: Turborepo + pnpm + TypeScript",
     "packageManager": "pnpm@9.15.0",
@@ -9,7 +9,13 @@
         "dev": "turbo run dev",
         "build": "turbo run build",
         "lint": "turbo run lint",
-        "test": "turbo run test"
+        "test": "turbo run test",
+        "dev:api": "turbo run dev --filter=api",
+        "dev:web": "turbo run dev --filter=web",
+        "build:api": "turbo run build --filter=api",
+        "build:web": "turbo run build --filter=web",
+        "build:common": "turbo run build --filter=@repo/common",
+        "start:api": "pnpm --filter api start"
     },
     "devDependencies": {
         "turbo": "^2.3.3",
