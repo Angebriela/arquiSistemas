@@ -1,16 +1,133 @@
-body { font-family: system-ui, sans-serif; margin: 0; background: #f8fafc; color: #0f172a; }
-.container { max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
-table { width: 100%; border-collapse: collapse; background: #fff; }
-th, td { padding: 0.55rem 0.7rem; border-bottom: 1px solid #e2e8f0; text-align: left; }
-form { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
-input { padding: 0.45rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+:root {
+  --aqua: #8ad6d1;
+  --teal: #359fa0;
+  --cream: #fff0c5;
+  --orange: #ff8c52;
+  --ink: #123c3d;
+}
 
-button { padding: 0.45rem 1rem; border: 0; border-radius: 6px; background: #1e3a8a; color: #fff; }
-.badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.85rem; }
-.badge.ok { background: #dcfce7; color: #166534; }
-.badge.down { background: #fee2e2; color: #991b1b; }
-.error { color: #b91c1c; }
-.tag { padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.8rem; }
-.tag.AVAILABLE { background: #dcfce7; }
-.tag.LOW_STOCK { background: #fef9c3; }
-.tag.OUT_OF_STOCK { background: #fee2e2; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(var(--teal), var(--teal)) top / 100% 215px no-repeat,
+    var(--cream);
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+h2 {
+  margin: 2rem 0 0.7rem;
+  color: var(--teal);
+}
+
+/* Estado de la API */
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.badge.ok {
+  background: #fff;
+  color: #1b7a5a;
+  border: 2px solid var(--aqua);
+}
+.badge.down {
+  background: #fff;
+  color: #b3401a;
+  border: 2px solid var(--orange);
+}
+
+.error {
+  color: #b3401a;
+  font-weight: 600;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(53, 159, 160, 0.25);
+}
+thead th {
+  background: var(--aqua);
+  color: var(--ink);
+}
+th,
+td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--aqua);
+  text-align: left;
+}
+tbody tr:hover {
+  background: #fffaf0;
+}
+
+/* Estados del producto */
+.tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.tag.AVAILABLE {
+  background: var(--aqua);
+  color: var(--ink);
+}
+.tag.LOW_STOCK {
+  background: var(--cream);
+  color: #8a5a00;
+  border: 1px solid var(--orange);
+}
+.tag.OUT_OF_STOCK {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid var(--aqua);
+}
+input {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  color: var(--ink);
+}
+input:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: 1px;
+}
+button {
+  padding: 0.5rem 1.3rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--orange);
+  color: var(--ink);
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover {
+  background: #ff7a35;
+}
