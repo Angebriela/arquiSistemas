@@ -71,6 +71,8 @@ Turborepo 2, pnpm, TypeScript 5, Express 4, React 18, Vite 5, tsup, Vitest y tsx
 | Configuración | Mínima | Amplia (plugins) | Mínima |
 | Foco principal | Orquestar tareas | Plataforma completa | Versionado/publicación |
 | Encaje aquí | Alto | Sobredimensionado | Innecesario (privados) |
+
+
 Se eligió **Turborepo** porque resuelve justo lo que el proyecto necesita (ejecutar tareas
 en el orden correcto del grafo y cachearlas) con una configuración mínima y sobre los
 workspaces nativos del gestor de paquetes. Nx aporta generadores y análisis avanzado que
